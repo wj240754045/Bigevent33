@@ -29,8 +29,54 @@
             </form>
         </div>
 
-    </div> 
+    </div>
 
 </body>
 
 </html>
+<!-- 
+    用户登录
+    1.为登录按钮绑定点击事件
+    2.获取用户名和密码
+        1.非空判断
+        2，为空提示用户
+        3.不为空才往下执行
+    3.ajax入口
+    4.数据返回之后
+        1成功 去首页
+        2.失败 弹框提示用户
+ -->
+<script src="./js/jquery-1.12.4.min.js"></script>
+<script>
+    $(function () {
+        // 1.为登录按钮绑定点击事件
+        $('.input_sub').click(function () {
+            $('.login_form').click(function(event){
+                event.preventDefault()
+            })
+            // 获取用户名和密码
+            var uesr_name = $('.input_txt').val()
+            var password = $('.input_pass').val()
+            // 1.非空判断
+            if (uesr_name == '' || password == '') {
+                return
+            }
+            // ajax入口
+            $.ajax({
+                url: 'https://autumnfish.cn/big/admin/login',
+                type: 'post',
+                data: {
+                    uesr_name: uesr_name,
+                    password: password,
+
+                },
+                success: function (backData) {
+                    console.log(backData);
+
+                }
+            })
+        })
+    })
+
+
+</script>
